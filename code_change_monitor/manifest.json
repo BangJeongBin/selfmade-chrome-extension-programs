@@ -1,0 +1,21 @@
+
+{
+  "manifest_version": 3,
+  "name": "Code Change Monitor",
+  "version": "1.0.0",
+  "description": "NCSC 경보 단계 이미지 변경 알람 프로그램\n2026.11.05 방정빈",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.ncsc.go.kr/ko/main/PageLink.html*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
