@@ -1,0 +1,50 @@
+// 타겟 html 코드
+//<ul class="list mt10 reply-data" id="replyView_0">
+//        <li>
+//            <p class="tit">작성자</p>
+//            <p class="txt">(부설) 정보통신기획평가원 박종찬</p>
+//        </li>
+//        <li>
+//            <p class="tit">작성일시</p>
+//            <p class="txt">2026-11-23 18:09</p>
+//        </li>
+//        <li class="valid-item">
+//            <p class="tit">댓글</p>
+//            <!-- 댓글 등록 했을 때 댓글 보이도록 class "show" 추가 -->
+//            <p class="txt comment show">해당사항 없음</p>
+//            <!-- 댓글 등록 했을 때 -->
+//            <!-- 수정 상태일 때 "textarea"보이도록 class 추가 "show"  20240827 -->
+//            <p class="txt comment_textarea"><textarea id="reply_0" name="reply">해당사항 없음</textarea></p>
+//            <!-- 20240827 -->
+//        </li>
+//        <li class="file-group">
+//            <p class="tit">첨부파일</p>
+//            <p>-</p>
+//        </li>
+//</ul>
+
+
+
+const targets = ['데이터1', '데이터2', '데이터3'];
+
+const results = [];
+
+document.querySelectorAll('ul.reply-data').forEach(el => {
+    const items = el.querySelectorAll('li');
+
+    const writer = items[0]?.querySelector('.txt')?.innerText.trim() || '';
+
+    if (targets.some(target => writer.includes(target))) {
+
+        const date = items[1]?.querySelector('.txt')?.innerText.trim() || '';
+        const comment = el.querySelector('.comment.show')?.innerText.trim() || '';
+
+        results.push({
+            작성자: writer,
+            작성일시: date,
+            댓글: comment
+        });
+    }
+});
+
+console.table(results);
